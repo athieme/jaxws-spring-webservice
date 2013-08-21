@@ -10,7 +10,7 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 
-@WebService(name="MockWebService")
+@WebService(name = "MockWebService")
 @SOAPBinding(style = SOAPBinding.Style.RPC, use = SOAPBinding.Use.LITERAL)
 @Slf4j
 public class MockWebServiceImpl {
@@ -27,5 +27,17 @@ public class MockWebServiceImpl {
         final String retval = new StringBuilder(value).reverse().toString();
         MockWebServiceImpl.log.error("value = {}, returning = {}", value, retval);
         return retval;
+    }
+
+    @WebMethod(operationName = "sleep")
+    public String sleep(@WebParam(name = "value") final String value, @WebParam(name = "delay") final Long delay) {
+        try {
+            Thread.sleep(delay);
+        } catch (final InterruptedException e) {
+            // ignore
+        }
+        System.out.println("value = " + value);
+        MockWebServiceImpl.log.error("value = {}, returning = {}", value, value);
+        return value;
     }
 }

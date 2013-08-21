@@ -41,7 +41,7 @@ public class MockWebServiceTest {
         final RestTemplate restTemplate = new RestTemplate();
         final Map<String, String> vars = new HashMap<String, String>();
         final String response = restTemplate.getForObject("http://localhost:9999/webservice/mock?wsdl", String.class, vars);
-        log.error("response = {}", response);
+        MockWebServiceTest.log.error("response = {}", response);
         Assert.assertNotNull(response);
         Assert.assertTrue(response.contains("<message name=\"reverse\">"));
         Assert.assertTrue(response.contains("<message name=\"echo\">"));
