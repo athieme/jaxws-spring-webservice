@@ -11,5 +11,6 @@
     </properties>
     <modules>
         <module>jaxws-spring-webservice-server</module>
+        <module>jaxws-spring-webservice-client</module>
     </modules>
 </project>

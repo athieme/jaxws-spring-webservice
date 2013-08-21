@@ -3,22 +3,29 @@
  */
 package com.athieme;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 
-@WebService()
+@WebService(name="MockWebService")
 @SOAPBinding(style = SOAPBinding.Style.RPC, use = SOAPBinding.Use.LITERAL)
-public class MockWebService {
+@Slf4j
+public class MockWebServiceImpl {
 
     @WebMethod(operationName = "echo")
     public String echo(@WebParam(name = "value") final String value) {
+        System.out.println("value = " + value);
+        MockWebServiceImpl.log.error("value = {}, returning = {}", value, value);
         return value;
     }
 
     @WebMethod(operationName = "reverse")
     public String reverse(@WebParam(name = "value") final String value) {
-        return new StringBuilder(value).reverse().toString();
+        final String retval = new StringBuilder(value).reverse().toString();
+        MockWebServiceImpl.log.error("value = {}, returning = {}", value, retval);
+        return retval;
     }
 }

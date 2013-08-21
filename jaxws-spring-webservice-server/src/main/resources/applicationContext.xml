@@ -19,5 +19,5 @@
         </wss:service>
     </wss:binding>
 
-    <bean id="mockWebService" class="com.athieme.MockWebService"/>
+    <bean id="mockWebService" class="com.athieme.MockWebServiceImpl"/>
 </beans>
